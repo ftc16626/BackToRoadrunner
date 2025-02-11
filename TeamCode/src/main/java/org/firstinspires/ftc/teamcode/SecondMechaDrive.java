@@ -33,6 +33,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /*
@@ -110,8 +111,8 @@ public class SecondMechaDrive extends LinearOpMode {
         RFMotor.setDirection(DcMotor.Direction.FORWARD);
         RBMotor.setDirection(DcMotor.Direction.FORWARD);
         rotateArm.setDirection(DcMotor.Direction.REVERSE);
-        extendArm1.setDirection(DcMotor.Direction.FORWARD);
-        extendArm2.setDirection(DcMotor.Direction.REVERSE);
+        extendArm1.setDirection(DcMotor.Direction.REVERSE);
+        extendArm2.setDirection(DcMotor.Direction.FORWARD);
 
 
 
