@@ -157,19 +157,15 @@ public class SecondMechaDrive extends LinearOpMode {
  // Wheel 1 is left servo motor (facing front of motor)
             if (gamepad2.left_bumper) {
                 Wheel1.setPower(-1);
-                Wheel2.setPower(0.9);
+                Wheel2.setPower(1);
+            }  else if (gamepad2.right_bumper) {
+                Wheel1.setPower(1);
+                Wheel2.setPower(-1);
             }  else {
                 Wheel1.setPower(0);
                 Wheel2.setPower(0);
             }
 
-            if (gamepad2.right_bumper) {
-                Wheel1.setPower(1);
-                Wheel2.setPower(-0.8);
-            }  else {
-                Wheel1.setPower(0);
-                Wheel2.setPower(0);
-            }
 
 
             // Send calculated power to wheels
