@@ -31,11 +31,10 @@ public class ThreeSpecAutoSImplified extends LinearOpMode {
         waitForStart();
 
         TrajectoryActionBuilder move = drive.actionBuilder(beginpose)
-                .afterTime(0,arm.SetPosition(150))
+                .afterTime(3,arm.SetPosition(150))
                 .strafeToLinearHeading(new Vector2d( -58, -58), Math.toRadians(235)) // Zero Strafe Score
-                .afterTime(0, arm.SetPosition(600))
-                .strafeToLinearHeading(new Vector2d(-51.5,-50.5), Math.toRadians(88))
-                .afterTime(0, extendArm.ArmOut(10,1,3)); // Strafe First Sample
+                .afterTime(3, arm.SetPosition(600))
+                .strafeToLinearHeading(new Vector2d(-51.5,-50.5), Math.toRadians(88));
 
 
         if(isStopRequested()) {return; }
@@ -86,7 +85,7 @@ public class ThreeSpecAutoSImplified extends LinearOpMode {
 
             rotateArm = hardwareMap.get(DcMotorEx.class, "rotateArm");
             rotateArm.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-            rotateArm.setDirection(DcMotorEx.Direction.FORWARD);
+            rotateArm.setDirection(DcMotorEx.Direction.REVERSE);
         }
 
         public class updatePID implements Action {
@@ -115,6 +114,45 @@ public class ThreeSpecAutoSImplified extends LinearOpMode {
     public class extendArm {
         public DcMotorEx extendArm1;
         public DcMotorEx extendArm2;
+        public int setPosition;
+
+        public extendArm(HardwareMap hardwareMap) {
+
+            extendArm1 = hardwareMap.get(DcMotorEx.class, "extendArm1");
+            extendArm2 = hardwareMap.get(DcMotorEx.class, "extendArm2");
+            extendArm1.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+            extendArm2. setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+            extendArm1.setDirection(DcMotorEx.Direction.REVERSE);
+            extendArm2.setDirection(DcMotorEx.Direction.FORWARD);
+        }
+
+        public class updatePID implements Action {
+            public updatePID() {
+
+            }
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                rotateArm.setPower(ArmPIDClass.returnArmPID(setPosition, rotateArm.getCurrentPosition()));
+                return true;
+            }
+        }
+        public Action UpdatePID() { return new updatePID();}
+
+        public class setPosition implements Action {
+            int set;
+            public setPosition(int position) { set = position; }
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                setPosition = set;
+                return false;
+            }
+        }
+        public Action SetPosition(int pos) { return new setPosition(pos); }
+    }
+    public class extendArm {
+        public DcMotorEx extendArm1;
+        public DcMotorEx extendArm2;
+
         public extendArm(HardwareMap hardwareMap) {
             extendArm1 = hardwareMap.get(DcMotorEx.class, "extendArm1");
             extendArm2 = hardwareMap.get(DcMotorEx.class, "extendArm2");
@@ -130,13 +168,7 @@ public class ThreeSpecAutoSImplified extends LinearOpMode {
             double speed;
             double next;
 
-           public ArmOut(double extend, double fast, double end) {
 
-
-               extend = Aposition;
-               fast = speed;
-               end = next;
-           }
 
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {

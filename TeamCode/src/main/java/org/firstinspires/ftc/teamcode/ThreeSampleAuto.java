@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-@Autonomous(name = "WWCD", group = "Autonomous")
+@Autonomous(name = "sfgbsfbfb", group = "Autonomous")
 public class ThreeSampleAuto extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
@@ -46,7 +46,7 @@ public class ThreeSampleAuto extends LinearOpMode {
         extendArm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         Actions.runBlocking(
-                drive.actionBuilder(new Pose2d(-9,-64.125,Math.toRadians(90)))
+                drive.actionBuilder(new Pose2d(-72,-8,0))
                         .strafeToLinearHeading(new Vector2d( -58, -58), Math.toRadians(235)) // Zero Strafe Score
                         .strafeToLinearHeading(new Vector2d(-51.5,-50.5), Math.toRadians(88)) // Strafe First Sample
                         .strafeToLinearHeading(new Vector2d( -60.5, -65), Math.toRadians(230)) // FirstScoreStrafe

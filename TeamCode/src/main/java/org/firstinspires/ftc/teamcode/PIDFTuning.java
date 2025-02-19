@@ -11,38 +11,36 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 @Config
-@TeleOp(name = "PIDTune")
-public class PIDTuning extends OpMode {
-    private PIDController armcontroller;
-    public static double Arm_p = 0.7, Arm_i = 0, Arm_d = 0;
-    public static double f = 0.007;
-    public static int target = -200;
-    private final double ticks_in_degrees = 2570 / 100.0;
-    private final double ZeroOffset = -750;
+@TeleOp(name = "PIDFTuner")
+public class PIDFTuning extends OpMode {
+    private PIDFController armcontroller;
+    public static double Arm_p = 0, Arm_i = 0, Arm_d = 0;
+    public static double Arm_f = 0;
+    public static int target = 0;
+    private final double ticks_in_degrees = 1993.6 / 180.0;
+    //private final double ZeroOffset = 950;
     private DcMotorEx rotateArm;
+    int armpos = 0;
 
 
     @Override
     public void init() {
-        armcontroller = new PIDController (Arm_p,Arm_i,Arm_d);
+        armcontroller = new PIDFController (Arm_p,Arm_i,Arm_d,Arm_f,target,armpos);
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
-
         rotateArm = hardwareMap.get(DcMotorEx.class,"rotateArm");
         rotateArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rotateArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rotateArm.setDirection(DcMotor.Direction.REVERSE);
 
     }
 
     @Override
     public void loop() {
-        armcontroller.setPID(Arm_p,Arm_i,Arm_d);
-        int armpos = rotateArm.getCurrentPosition();
-        double pid = armcontroller.calculate(armpos, target);
-        double ff = (Math.cos(Math.toRadians(((-armpos + ZeroOffset) / ticks_in_degrees)))) * f;
-        double power = pid + ff;
 
-        rotateArm.setPower(-power);
+        armcontroller.setPIDF(Arm_p,Arm_i,Arm_d,Arm_f);
+        int armpos = rotateArm.getCurrentPosition();
+        double power = armcontroller.calculate(armpos, target);
+
+        rotateArm.setPower(power);
 
         telemetry.addData("armpos", armpos);
         telemetry.addData("target", target);
