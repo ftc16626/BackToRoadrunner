@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 @TeleOp(name = "ExTTune")
 public class ExtTuning extends OpMode {
     private PIDController armcontroller;
-    public static double Arm_p = 0, Arm_i = 0, Arm_d = 0;
+    public static double Arm_p = 0.001, Arm_i = 0, Arm_d = 0.0005;
     public static int target = 0;
     private DcMotorEx extendArm1;
     private DcMotorEx extendArm2;
@@ -38,11 +38,10 @@ public class ExtTuning extends OpMode {
     public void loop() {
         armcontroller.setPID(Arm_p,Arm_i,Arm_d);
         int armpos = extendArm2.getCurrentPosition();
-        double pid = armcontroller.calculate(armpos, target);
-        double power = pid;
+        double pid = -armcontroller.calculate(armpos, target);
 
-        extendArm1.setPower(power);
-        extendArm2.setPower(power);
+        extendArm1.setPower(pid);
+        extendArm2.setPower(pid);
 
         telemetry.addData("armpos", armpos);
         telemetry.addData("target", target);
