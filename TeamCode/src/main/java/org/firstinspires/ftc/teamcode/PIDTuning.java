@@ -39,7 +39,7 @@ public class PIDTuning extends OpMode {
         armcontroller.setPID(Arm_p,Arm_i,Arm_d);
         int armpos = rotateArm.getCurrentPosition();
         double pid = armcontroller.calculate(armpos, target);
-        double ff = (Math.cos(Math.toRadians(((-armpos + ZeroOffset) / ticks_in_degrees)))) * f;
+        double ff = Math.cos(Math.toRadians((-armpos + ZeroOffset) / ticks_in_degrees)) * f;
         double power = pid + ff;
 
         rotateArm.setPower(-power);

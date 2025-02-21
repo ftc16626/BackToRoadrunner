@@ -32,7 +32,6 @@ public class ExtTuning extends OpMode {
         extendArm2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         extendArm2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         extendArm2.setDirection(DcMotor.Direction.FORWARD);
-
     }
 
     @Override
