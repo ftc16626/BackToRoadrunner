@@ -14,8 +14,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 @TeleOp(name = "PIDTune")
 public class PIDTuning extends OpMode {
     private PIDController armcontroller;
-    public static double Arm_p = 0.7, Arm_i = 0, Arm_d = 0;
-    public static double f = 0.007;
+    public static double Arm_p = 0.06, Arm_i = 0, Arm_d = 0.03;
+    public static double f = 0.001;
     public static int target = -200;
     private final double ticks_in_degrees = 2570 / 100.0;
     private final double ZeroOffset = -750;
