@@ -6,8 +6,8 @@ public class ArmPIDClass {
 
     private static PIDController controller;
 
-    public static double p = 0.06, i = 0, d = 0.03;
-    public static double f = 0.001;
+    public static double p = 0, i = 0, d = 0;
+    public static double f = 0;
 
     public static final double ticks_in_degrees = 2570 / 100.0;
 

@@ -33,12 +33,25 @@ public class ThreeSampAutoSimplified extends LinearOpMode {
         waitForStart();
 
         TrajectoryActionBuilder move = drive.actionBuilder(beginpose)
-                .lineToX(-48)
-                .afterTime(1,ext.SetPosition(-1000))
-                .afterTime(1, arm.SetPosition(-750))
-                .afterTime(0, ext.Intake(5,1,-1))
-                .strafeTo(new Vector2d(-48,-51))
-                .turnTo(113);
+                .lineToX(-60)
+                .waitSeconds(0.2)
+                .strafeTo(new Vector2d(-52,-56))
+                .waitSeconds(0.2)
+                .strafeToLinearHeading(new Vector2d( -52.01, -56.01), Math.toRadians(116))
+                .waitSeconds(0.2)
+                .strafeToLinearHeading(new Vector2d( -52, -56), Math.toRadians(0))
+                .strafeTo(new Vector2d(-52,-46))
+                .strafeTo(new Vector2d(-40,-46))
+                .waitSeconds(3)
+                .afterTime(5,ext.SetPosition(-1000))
+                .afterTime(5,arm.SetPosition(-250))
+                .afterTime(5,ext.Intake(3,1,-1))
+                .strafeToLinearHeading(new Vector2d( -40.01, -46.01), Math.toRadians(116))
+                .strafeTo(new Vector2d(-52,-56));
+                
+
+
+
 
         if(isStopRequested()) {return; }
 
