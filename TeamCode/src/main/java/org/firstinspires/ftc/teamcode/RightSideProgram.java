@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -13,8 +14,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-@Autonomous(name = "SpecSample", group = "Autonomous")
-public class OneSpecTwoSample extends LinearOpMode {
+@Autonomous(name = "RightSideProgram", group = "Autonomous")
+public class RightSideProgram extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, 0));
@@ -44,61 +45,14 @@ public class OneSpecTwoSample extends LinearOpMode {
         extendArm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         Actions.runBlocking(
-                drive.actionBuilder(new Pose2d(-62, -9, 0))
-//                        .lineToX(-38) // Spec Score
+                drive.actionBuilder(new Pose2d(-62, 9, 0))
+                        .lineToX(-38) // Spec Score
                         .stopAndAdd(new RotateUp(rotateArm,180,3))
                         .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,2))
                         .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
                         .stopAndAdd(new RotateDown(rotateArm,-150,2)) // Score Specimen
-
-//                        .lineToX(-40)
-//                        .strafeTo(new Vector2d(-40,-46)) // Strafe Second Sample
-
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.75,-1,1,1.5))
-                        .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
-                        .stopAndAdd(new RotateUp(rotateArm,220,3)) // Grab Second Sample
-
-//                        .strafeToLinearHeading(new Vector2d( -40.01, -46.01), Math.toRadians(116))
-//                        .strafeTo(new Vector2d(-52,-56)) // Strafe Second Sample Score
-
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,1.5))
-                        .stopAndAdd(new Intake(Wheel1, Wheel2, 1,-1,1)) // Score Zero
-                        .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
-
-//                        .strafeToLinearHeading(new Vector2d( -51, -55), Math.toRadians(0))
-//                        .strafeTo(new Vector2d(-51,-50))
-//                        .strafeTo(new Vector2d(-40,-50))
-                        .stopAndAdd(new RotateDown(rotateArm,-200,2)) // Don't Hit Wall
-
-
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.75,1,-1,1.5))
-                        .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
-                        .stopAndAdd(new RotateUp(rotateArm,260,3)) // Grab Third Sample
-
-
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,1.5))
-                        .stopAndAdd(new Intake(Wheel1, Wheel2, 1,-1,1)) // Score Zero
-
-
-
-
-
-
-
-//                        .waitSeconds(1)
-//                        .strafeToLinearHeading(new Vector2d( -52, -56), Math.toRadians(0))
-//                        .strafeTo(new Vector2d(-52,-46))
-//                        .strafeTo(new Vector2d(-40,-46)) // Strafe First Sample
-
-//                        .strafeToLinearHeading(new Vector2d( -40.01, -46.01), Math.toRadians(116))
-//                        .strafeTo(new Vector2d(-52,-56)) // First Score Strafe
-
-//                        .strafeToLinearHeading(new Vector2d(-67,-52), Math.toRadians(84)) // SecondSampleStrafe
-
-//                        .strafeToLinearHeading(new Vector2d( -63, -67), Math.toRadians(240)) // SecondScoreStrafe
-
+                        .strafeToLinearHeading(new Vector2d( -50.01, 62.01), Math.toRadians(-20))
                         .build());
-
     }
 
     public class Intake implements Action {
