@@ -130,7 +130,7 @@ public class ThreeSampleAutoPID extends LinearOpMode {
             }
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                rotateArm.setPower(ArmPIDClass.returnArmPID(setPosition, rotateArm.getCurrentPosition()));
+                rotateArm.setPower(ArmPIDClass.returnArmPID(setPosition, rotateArm.getCurrentPosition(),0));
                 return true;
             }
         }

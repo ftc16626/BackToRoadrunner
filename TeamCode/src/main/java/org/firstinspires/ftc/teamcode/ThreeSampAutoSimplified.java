@@ -34,6 +34,7 @@ public class ThreeSampAutoSimplified extends LinearOpMode {
 
         TrajectoryActionBuilder move = drive.actionBuilder(beginpose)
                 .lineToX(-60)
+                .afterTime(5,ext.SetPosition(-1000))
                 .waitSeconds(0.2)
                 .strafeTo(new Vector2d(-52,-56))
                 .waitSeconds(0.2)
@@ -43,12 +44,11 @@ public class ThreeSampAutoSimplified extends LinearOpMode {
                 .strafeTo(new Vector2d(-52,-46))
                 .strafeTo(new Vector2d(-40,-46))
                 .waitSeconds(3)
-                .afterTime(5,ext.SetPosition(-1000))
                 .afterTime(5,arm.SetPosition(-250))
                 .afterTime(5,ext.Intake(3,1,-1))
                 .strafeToLinearHeading(new Vector2d( -40.01, -46.01), Math.toRadians(116))
                 .strafeTo(new Vector2d(-52,-56));
-                
+
 
 
 
@@ -69,14 +69,14 @@ public class ThreeSampAutoSimplified extends LinearOpMode {
     public class rotateArm {
         public DcMotorEx rotateArm;
         public int setPosition;
+        public DcMotorEx extendArm2;
 
         public rotateArm(HardwareMap hardwareMap) {
 
             rotateArm = hardwareMap.get(DcMotorEx.class, "rotateArm");
             rotateArm.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
             rotateArm.setDirection(DcMotor.Direction.REVERSE);
-            rotateArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            rotateArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            extendArm2 = hardwareMap.get(DcMotorEx.class, "extendArm2");
         }
 
         public class updatePID implements Action {
@@ -85,7 +85,7 @@ public class ThreeSampAutoSimplified extends LinearOpMode {
             }
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                rotateArm.setPower(ArmPIDClass.returnArmPID(setPosition, rotateArm.getCurrentPosition()));
+                rotateArm.setPower(ArmPIDClass.returnArmPID(setPosition, rotateArm.getCurrentPosition(), extendArm2.getCurrentPosition()));
                 return true;
             }
         }
@@ -93,7 +93,6 @@ public class ThreeSampAutoSimplified extends LinearOpMode {
 
         public class setPosition implements Action {
             int set;
-            private boolean initialized = false;
 
             public setPosition(int position) { set = position; }
             @Override

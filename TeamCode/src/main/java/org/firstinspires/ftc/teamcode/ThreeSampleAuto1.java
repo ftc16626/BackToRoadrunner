@@ -14,8 +14,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-@Autonomous(name = "AgaBoga", group = "Autonomous")
-public class ThreeSampleAuto extends LinearOpMode {
+@Autonomous(name = "WWCD2", group = "Autonomous")
+public class ThreeSampleAuto1 extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0,0,0));
@@ -28,8 +28,8 @@ public class ThreeSampleAuto extends LinearOpMode {
         DcMotor extendArm2 = hardwareMap.get(DcMotor.class, "extendArm2");
 
         rotateArm.setDirection(DcMotor.Direction.REVERSE);
-        extendArm1.setDirection(DcMotor.Direction.FORWARD);
-        extendArm2.setDirection(DcMotor.Direction.REVERSE);
+        extendArm1.setDirection(DcMotor.Direction.REVERSE);
+        extendArm2.setDirection(DcMotor.Direction.FORWARD);
         extendArm1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         extendArm2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rotateArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -49,19 +49,21 @@ public class ThreeSampleAuto extends LinearOpMode {
                 drive.actionBuilder(new Pose2d(-62,-9,0))
                         .lineToX(-60) // Zero Strafe Score
                         .strafeTo(new Vector2d(-51,-55))
-                        .strafeToLinearHeading(new Vector2d( -51.01, -55.01), Math.toRadians(116))
+                        .strafeToLinearHeading(new Vector2d( -51.01, -55.01), Math.toRadians(119))
                         .waitSeconds(.01)
-                        .stopAndAdd(new ArmOutRU(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2,0,70,0,0,0,.8)) // RotUP
-                        .waitSeconds(.5)
-                        .stopAndAdd(new ArmOutRU(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2,16,0,1,0,0,2)) // ExtUp
-                        .stopAndAdd(new Intake(Wheel1, Wheel2, -1,1,2))
+                        .stopAndAdd(new ArmOutRU(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2,0,140,0,0,0,1)) // RotUP
                         .waitSeconds(1)
-                        .stopAndAdd(new ArmInRD(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2,-21,0,-1,0,0,3)) // ExtDown
+                        .stopAndAdd(new ArmOutRU(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2,10,0,1,0,0,1)) // ExtUp
+                        .stopAndAdd(new Intake(Wheel1, Wheel2, -1,1,1)) // Score Zero
+                        .waitSeconds(1)
+                        .stopAndAdd(new ArmInRD(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2,-22,0,-1,0,0,1.6)) // ExtDown
+                        .waitSeconds(1)
                         .stopAndAdd(new ArmInRD(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2,0,-120,-1,0,0,1.3)) // RotDown
+                        .waitSeconds(1)
                         .strafeToLinearHeading(new Vector2d( -52, -56), Math.toRadians(0))
                         .strafeTo(new Vector2d(-52,-46))
                         .strafeTo(new Vector2d(-40,-46)) // Strafe First Sample
-                        .stopAndAdd(new ArmOutRU(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2,22,0,.85,-1,1,3)) // Grap Sample One
+                        .stopAndAdd(new ArmOutRU(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2,19,0,.85,-1,1,3)) // Grap Sample One
                         .stopAndAdd(new ArmInRD(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2,-17,0,-1,0,0,1)) // Tuck In Arm
                         .stopAndAdd(new ArmOutRU(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2,0,90,1,0,0,1.8)) // RotUp
                         .strafeToLinearHeading(new Vector2d( -40.01, -46.01), Math.toRadians(116))
@@ -174,8 +176,8 @@ public class ThreeSampleAuto extends LinearOpMode {
                 final double PULLEY_DIAMETER_INCHES = 1.5;// For figuring circumference
                 final double COUNTS_PER_EXTINCH = (COUNTS_PER_EXT_MOTOR_REV) /
                         (PULLEY_DIAMETER_INCHES * 3.1415);
-                final double COUNTS_PER_ROT_MOTOR_REV = 8192;
-                final double ROTATE_GEAR_REDUC = 1.0;
+                final double COUNTS_PER_ROT_MOTOR_REV = 1993.6;
+                final double ROTATE_GEAR_REDUC = 2.0;
                 final double COUNTS_PER_DEGREE = (COUNTS_PER_ROT_MOTOR_REV * ROTATE_GEAR_REDUC) / 360;
                 int newROTarget;
                 int newLEXTarget;
@@ -196,7 +198,7 @@ public class ThreeSampleAuto extends LinearOpMode {
             }
 
             double pos = extendArm1.getCurrentPosition() + rotateArm.getCurrentPosition();
-            double end = extendArm2.getTargetPosition() + rotateArm.getTargetPosition();
+            double end = extendArm1.getTargetPosition() + rotateArm.getTargetPosition();
             Wheel1.setPower(lpower);
             Wheel2.setPower(rpower);
 
@@ -250,8 +252,8 @@ public class ThreeSampleAuto extends LinearOpMode {
                 final double     PULLEY_DIAMETER_INCHES = 1.5 ;// For figuring circumference
                 final double     COUNTS_PER_EXTINCH      = (COUNTS_PER_EXT_MOTOR_REV) /
                         (PULLEY_DIAMETER_INCHES * 3.1415);
-                final double COUNTS_PER_ROT_MOTOR_REV = 8192;
-                final double ROTATE_GEAR_REDUC = 1.0;
+                final double COUNTS_PER_ROT_MOTOR_REV = 1993.6;
+                final double ROTATE_GEAR_REDUC = 2.0;
                 final double COUNTS_PER_DEGREE = (COUNTS_PER_ROT_MOTOR_REV * ROTATE_GEAR_REDUC) / 360;
                 int newROTarget;
                 int newLEXTarget;
@@ -327,7 +329,7 @@ public class ThreeSampleAuto extends LinearOpMode {
                 final double     PULLEY_DIAMETER_INCHES = 1.5 ;// For figuring circumference
                 final double     COUNTS_PER_EXTINCH      = (COUNTS_PER_EXT_MOTOR_REV) /
                         (PULLEY_DIAMETER_INCHES * 3.1415);
-                final double COUNTS_PER_ROT_MOTOR_REV = 8192;
+                final double COUNTS_PER_ROT_MOTOR_REV = 1993.6;
                 final double ROTATE_GEAR_REDUC = 2.0;
                 final double COUNTS_PER_DEGREE = (COUNTS_PER_ROT_MOTOR_REV * ROTATE_GEAR_REDUC) / 360;
                 int newROTarget;
@@ -408,7 +410,7 @@ public class ThreeSampleAuto extends LinearOpMode {
                 final double     PULLEY_DIAMETER_INCHES = 1.5 ;// For figuring circumference
                 final double     COUNTS_PER_EXTINCH      = (COUNTS_PER_EXT_MOTOR_REV) /
                         (PULLEY_DIAMETER_INCHES * 3.1415);
-                final double COUNTS_PER_ROT_MOTOR_REV = 8192;
+                final double COUNTS_PER_ROT_MOTOR_REV = 1993.6;
                 final double ROTATE_GEAR_REDUC = 2.0;
                 final double COUNTS_PER_DEGREE = (COUNTS_PER_ROT_MOTOR_REV * ROTATE_GEAR_REDUC) / 360;
                 extendArm1.setDirection(DcMotor.Direction.REVERSE);
