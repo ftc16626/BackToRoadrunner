@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
-import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -14,8 +13,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-@Autonomous(name = "AAAAAAA", group = "Autonomous")
-public class ThreeSampleAuto2 extends LinearOpMode {
+@Autonomous(name = "BBBBBBB", group = "Autonomous")
+public class OneSpecTwoSample extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, 0));
@@ -46,18 +45,13 @@ public class ThreeSampleAuto2 extends LinearOpMode {
 
         Actions.runBlocking(
                 drive.actionBuilder(new Pose2d(-62, -9, 0))
-//                        .lineToX(-60) // Zero Strafe Score
-//                        .strafeTo(new Vector2d(-51,-55))
-//                        .strafeToLinearHeading(new Vector2d( -51.01, -55.01), Math.toRadians(119))
-//                        .waitSeconds(.01)
-                        .stopAndAdd(new RotateUp(rotateArm,260,3))
+//                        .lineToX(-38) // Spec Score
+                        .stopAndAdd(new RotateUp(rotateArm,180,3))
                         .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,2))
-                        .stopAndAdd(new Intake(Wheel1, Wheel2, 1,-1,1)) // Score Zero
                         .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
-                        .stopAndAdd(new RotateDown(rotateArm,-200,2)) // Score First Sample Block
+                        .stopAndAdd(new RotateDown(rotateArm,-150,2)) // Score Specimen
 
-//                        .strafeToLinearHeading(new Vector2d( -52, -56), Math.toRadians(0))
-//                        .strafeTo(new Vector2d(-52,-46))
+//                        .lineToX(-40)
 //                        .strafeTo(new Vector2d(-40,-46)) // Strafe Second Sample
 
                         .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.75,-1,1,1.5))
