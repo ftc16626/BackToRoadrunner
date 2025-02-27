@@ -62,7 +62,7 @@ public class ThreeSampleAuto2 extends LinearOpMode {
 
                         .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.75,1,-1,1.5))
                         .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
-                        .stopAndAdd(new RotateUp(rotateArm,225,3)) // Grab Second Sample
+                        .stopAndAdd(new RotateUp(rotateArm,225,2.5)) // Grab Second Sample
 
                         .strafeToLinearHeading(new Vector2d( -48.01, -47.01), Math.toRadians(125))
                         .lineToX(-60)
@@ -74,12 +74,12 @@ public class ThreeSampleAuto2 extends LinearOpMode {
                         .strafeToLinearHeading(new Vector2d( -51, -55), Math.toRadians(0))
                         .strafeTo(new Vector2d(-51,-50))
                         .strafeTo(new Vector2d(-40,-50))
-                        .stopAndAdd(new RotateDown(rotateArm,-200,2)) // Don't Hit Wall
+                        .stopAndAdd(new RotateDown(rotateArm,-200,1.5)) // Don't Hit Wall
 
 
                         .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.75,-1,1,1.5))
                         .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
-                        .stopAndAdd(new RotateUp(rotateArm,260,3)) // Grab Third Sample
+                        .stopAndAdd(new RotateUp(rotateArm,260,2.5)) // Grab Third Sample
 
 
                         .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,1.5))
