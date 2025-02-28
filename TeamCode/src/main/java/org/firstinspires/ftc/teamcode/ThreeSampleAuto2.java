@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-@Autonomous(name = "AAAAAAA", group = "Autonomous")
+@Autonomous(name = "ThreeSampleAuto", group = "Autonomous")
 public class ThreeSampleAuto2 extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
@@ -46,38 +46,46 @@ public class ThreeSampleAuto2 extends LinearOpMode {
 
         Actions.runBlocking(
                 drive.actionBuilder(new Pose2d(-62, -9, 0))
-                       .lineToX(-60) // Zero Strafe Score
-                       .strafeTo(new Vector2d(-50,-54))
-                        .strafeToLinearHeading(new Vector2d( -50.01, -54.01), Math.toRadians(119))
-                       .waitSeconds(.01)
+//                       .lineToX(-60) // Zero Strafe Score
+//                       .strafeTo(new Vector2d(-50,-54))
+//                        .strafeToLinearHeading(new Vector2d( -50.01, -54.01), Math.toRadians(119))
+//                       .waitSeconds(.01)
                         .stopAndAdd(new RotateUp(rotateArm,260,3))
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,1.8))
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 19,0.1,-1,1,2)) // Intake
-                        .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
-                        .stopAndAdd(new RotateDown(rotateArm,-205,2)) // Score First Sample Block
-
-                        .strafeToLinearHeading(new Vector2d( -52, -56), Math.toRadians(0))
-                       .strafeTo(new Vector2d(-52,-46))
-                       .strafeTo(new Vector2d(-48,-47)) // Strafe Second Sample
-
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.75,1,-1,1.5))
-                        .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
-                        .stopAndAdd(new RotateUp(rotateArm,225,2.5)) // Grab Second Sample
-
-                        .strafeToLinearHeading(new Vector2d( -48.01, -47.01), Math.toRadians(125))
-                        .lineToX(-60)
-
                         .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,1.5))
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 19,0.1,-1,1,2)) // Intake
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 19,0.1,-1,1,1.5)) // Intake
                         .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
+                        .stopAndAdd(new RotateDown(rotateArm,-230,2)) // Score First Sample Block
 
-                        .strafeToLinearHeading(new Vector2d( -51, -55), Math.toRadians(0))
-                        .strafeTo(new Vector2d(-51,-50))
-                        .strafeTo(new Vector2d(-40,-50))
-                        .stopAndAdd(new RotateDown(rotateArm,-200,1.5)) // Don't Hit Wall
+//                        .strafeToLinearHeading(new Vector2d( -52, -56), Math.toRadians(0))
+//                       .strafeTo(new Vector2d(-52,-46))
+//                       .strafeTo(new Vector2d(-48,-47)) // Strafe Second Sample
+
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.75,1,-1,.6))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.4,1,-1,.3))
+                        .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,.7))
+                        .stopAndAdd(new RotateUp(rotateArm,240,2.5)) // Grab Second Sample
+
+//                        .strafeToLinearHeading(new Vector2d( -48.01, -47.01), Math.toRadians(125))
+//                        .lineToX(-60)
+                        // or
+                        //.strafeTo(new Vector2d(-52,-46)
+                        //.strafeToLinearHeading(new Vector2d( -52, -56), Math.toRadians(0))
+                        //.strafeToLinearHeading(new Vector2d( -50.01, -54.01), Math.toRadians(119))
 
 
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.75,-1,1,1.5))
+
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,1.1))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 19,0.15,-1,1,2)) // Intake
+                        .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1.1))
+
+//                        .strafeToLinearHeading(new Vector2d( -51, -55), Math.toRadians(0))
+//                        .strafeTo(new Vector2d(-51,-50))
+//                        .strafeTo(new Vector2d(-40,-50))
+                        .stopAndAdd(new RotateDown(rotateArm,-230,1.5)) // Don't Hit Wall
+
+
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.75,1,-1,.7))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.4,1,-1,.2))
                         .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
                         .stopAndAdd(new RotateUp(rotateArm,260,2.5)) // Grab Third Sample
 
@@ -179,7 +187,7 @@ public class ThreeSampleAuto2 extends LinearOpMode {
             if (pos < end) {
                 return timer.seconds() < next;
             } else {
-                rotateArm.setPower(Math.abs(.03));
+                rotateArm.setPower(Math.abs(.065));
                 rotateArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 return false;
             }
