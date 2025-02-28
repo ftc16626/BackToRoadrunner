@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -44,31 +45,35 @@ public class OneSpecTwoSample extends LinearOpMode {
         extendArm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         Actions.runBlocking(
-                drive.actionBuilder(new Pose2d(-62, -9, 0))
-//                       // .lineToX(-38) // Spec Score
+                drive.actionBuilder(new Pose2d(-62, -9, 90))
+                       .lineToX(-38) // Spec Score
                        .stopAndAdd(new RotateUp(rotateArm,220,3))
                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,1.1))
                        .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
                        .stopAndAdd(new RotateDown(rotateArm,-180,2)) // Score Specimen
 
-//                        .lineToX(-40)
-//                        .strafeTo(new Vector2d(-40,-46)) // Strafe Second Sample
+                        .strafeTo(new Vector2d(-44,-9))
+                        .strafeTo(new Vector2d(-44,-48))
 
                         .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,1,-1,.4))
                         .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.4,1,-1,.7))
                         .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,.7))
                         .stopAndAdd(new RotateUp(rotateArm,260,2.5)) // Grab Second Sample
 
-//                        .strafeToLinearHeading(new Vector2d( -40.01, -46.01), Math.toRadians(116))
-//                        .strafeTo(new Vector2d(-52,-56)) // Strafe Second Sample Score
+                        .strafeTo(new Vector2d(-44,-52))
+                        .strafeToLinearHeading(new Vector2d(-56.01,-52.01), Math.toRadians(90))
+                        .strafeToLinearHeading(new Vector2d(-54.01,-50.01), Math.toRadians(211))
+                        .strafeToLinearHeading(new Vector2d(-55,-51), Math.toRadians(90))
+
 
                         .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.9,0,0,.1))
                         .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.1,-1,1,1))
                         .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
 
-//                        .strafeToLinearHeading(new Vector2d( -51, -55), Math.toRadians(0))
-//                        .strafeTo(new Vector2d(-51,-50))
-//                        .strafeTo(new Vector2d(-40,-50))
+                        .waitSeconds(.01)
+                        .strafeToLinearHeading(new Vector2d( -55, -51), Math.toRadians(90))
+                        .strafeTo(new Vector2d(-44,-51))
+                        .strafeTo(new Vector2d(-44,-57))
                         .stopAndAdd(new RotateDown(rotateArm,-230,2)) // Don't Hit Wall
 
 
@@ -77,6 +82,10 @@ public class OneSpecTwoSample extends LinearOpMode {
                         .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
                         .stopAndAdd(new RotateUp(rotateArm,260,2.5)) // Grab Third Sample
 
+                        .waitSeconds(.01)
+                        .strafeTo(new Vector2d(-44,-51))
+                        .strafeToLinearHeading(new Vector2d(-55,-51), Math.toRadians(90))
+                        .strafeToLinearHeading(new Vector2d(-54.01,-50.01), Math.toRadians(211))
 
                         .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,.2))
                         .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,1.5))
