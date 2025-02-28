@@ -60,8 +60,8 @@ public class ThreeSampleAuto2 extends LinearOpMode {
 //                       .strafeTo(new Vector2d(-52,-46))
 //                       .strafeTo(new Vector2d(-48,-47)) // Strafe Second Sample
 
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.75,1,-1,.6))
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.4,1,-1,.3))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,1,-1,.4))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.4,1,-1,.7))
                         .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,.7))
                         .stopAndAdd(new RotateUp(rotateArm,240,2.5)) // Grab Second Sample
 
@@ -74,9 +74,9 @@ public class ThreeSampleAuto2 extends LinearOpMode {
 
 
 
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,1.1))
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 19,0.15,-1,1,2)) // Intake
-                        .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1.1))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,.8))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 19,0.1,-1,1,2)) // Intake
+                        .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
 
 //                        .strafeToLinearHeading(new Vector2d( -51, -55), Math.toRadians(0))
 //                        .strafeTo(new Vector2d(-51,-50))
@@ -84,13 +84,13 @@ public class ThreeSampleAuto2 extends LinearOpMode {
                         .stopAndAdd(new RotateDown(rotateArm,-230,1.5)) // Don't Hit Wall
 
 
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.75,1,-1,.7))
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.4,1,-1,.2))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,1,-1,.4))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.4,1,-1,.7))
                         .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
                         .stopAndAdd(new RotateUp(rotateArm,260,2.5)) // Grab Third Sample
 
 
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,1.5))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,.4))
                         .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 19,0.1,-1,1,2)) // Intake
 
 

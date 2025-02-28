@@ -46,12 +46,12 @@ public class RightSideProgram extends LinearOpMode {
 
         Actions.runBlocking(
                 drive.actionBuilder(new Pose2d(-62, 9, 0))
-                        .lineToX(-38) // Spec Score
-                        .stopAndAdd(new RotateUp(rotateArm,180,3))
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,2))
+                       // .lineToX(-38) // Spec Score
+                        .stopAndAdd(new RotateUp(rotateArm,220,3))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,1.1))
                         .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
                         .stopAndAdd(new RotateDown(rotateArm,-150,2)) // Score Specimen
-                        .strafeToLinearHeading(new Vector2d( -50.01, 62.01), Math.toRadians(-20))
+                       // .strafeToLinearHeading(new Vector2d( -50.01, 62.01), Math.toRadians(-20))
                         .build());
     }
 
