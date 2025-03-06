@@ -45,12 +45,13 @@ public class RightSideProgram extends LinearOpMode {
         extendArm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         Actions.runBlocking(
-                drive.actionBuilder(new Pose2d(-62, 9, 90))
+                drive.actionBuilder(new Pose2d(-62, 9, 0))
                         .lineToX(-38) // Spec Score
-                        .stopAndAdd(new RotateUp(rotateArm,220,3))
+                        .stopAndAdd(new RotateUp(rotateArm,190,3))
                         .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,1.1))
+                        .stopAndAdd(new RotateUp(rotateArm,30,1))
                         .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
-                        .stopAndAdd(new RotateDown(rotateArm,-150,2)) // Score Specimen
+                        .stopAndAdd(new RotateDown(rotateArm,-200,2)) // Score Specimen
                         .strafeTo(new Vector2d(-55,9))
                         .strafeTo(new Vector2d(-55,55))
                         .build());

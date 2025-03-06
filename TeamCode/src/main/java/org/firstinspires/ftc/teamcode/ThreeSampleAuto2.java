@@ -45,57 +45,60 @@ public class ThreeSampleAuto2 extends LinearOpMode {
         extendArm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         Actions.runBlocking(
-                drive.actionBuilder(new Pose2d(-62, -9, Math.toRadians(90)))
-                        .strafeTo(new Vector2d(-54,-9))
-                        .strafeTo(new Vector2d(-54,-50))
-                        .strafeToLinearHeading(new Vector2d( -50.01, -54.01), Math.toRadians(211))
+                drive.actionBuilder(new Pose2d(-62, -29, Math.toRadians(0)))
+                        .strafeTo(new Vector2d(-54,-29))
+                        .strafeTo(new Vector2d(-56.5,-50))
+                        .strafeToLinearHeading(new Vector2d( -50.01, -50.01), Math.toRadians(123))
                         .waitSeconds(.01)
-                        .stopAndAdd(new RotateUp(rotateArm,260,3))
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,1.5))
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 19,0.1,-1,1,1.5)) // Intake
+                        .stopAndAdd(new RotateUp(rotateArm,280, 1,3))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,1.6,.35))
+                        .waitSeconds(.2)
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 19,0.1,-1,1,1.4,.3)) // Intake
                         .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
-                        .stopAndAdd(new RotateDown(rotateArm,-230,2)) // Score First Sample Block
+                        .stopAndAdd(new RotateDown(rotateArm,-218.5,2)) // Score First Sample Block
 
                         .waitSeconds(.01)
-                        .strafeToLinearHeading(new Vector2d( -52, -56), Math.toRadians(90))
-                        .strafeTo(new Vector2d(-44,-52))
-                        .strafeTo(new Vector2d(-44,-47)) // Strafe Second Sample
+                        .strafeToLinearHeading(new Vector2d( -52, -56), Math.toRadians(0))
+                        .strafeTo(new Vector2d(-47,-56))
+                        .strafeTo(new Vector2d(-47,-50.5)) // Strafe Second Sample
 
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,1,-1,.4))
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.4,1,-1,.7))
-                        .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,.7))
-                        .stopAndAdd(new RotateUp(rotateArm,240,2.5)) // Grab Second Sample
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.7,1,-1,.45,.05))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.7,1,-1,.6,.05))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 0,0,1,-1,0,0))
+                        .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,1,-1,.7))
+                        .stopAndAdd(new RotateUp(rotateArm,240,.065,2.5)) // Grab Second Sample
 
                          .waitSeconds(.01)
-                         .strafeTo(new Vector2d(-44,-52))
-                         .strafeToLinearHeading(new Vector2d( -56.01, -52.01), Math.toRadians(90))
-                         .strafeToLinearHeading(new Vector2d( -54.01, -50.01), Math.toRadians(211))
+                         .strafeTo(new Vector2d(-49.5,-50.5))
+                         .strafeToLinearHeading(new Vector2d( -51.51, -59.01), Math.toRadians(0))
+                         .strafeToLinearHeading(new Vector2d( -53, -58), Math.toRadians(121))
 
 
 
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,.8))
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 19,0.1,-1,1,2)) // Intake
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,1.55,.05))
+                        .waitSeconds(.5)
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 19,0.07,-1,1,1.4,.05)) // Intake
                         .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
 
                         .waitSeconds(.01)
-                        .strafeToLinearHeading(new Vector2d( -55, -51), Math.toRadians(90))
-                        .strafeTo(new Vector2d(-44,-51))
-                        .strafeTo(new Vector2d(-44,-57))
-                        .stopAndAdd(new RotateDown(rotateArm,-230,1.5)) // Don't Hit Wall
+                        .strafeToLinearHeading(new Vector2d( -55, -51), Math.toRadians(0))
+                        .strafeTo(new Vector2d(-52.5,-51))
+                        .strafeTo(new Vector2d(-52.5,-55))
+                        .stopAndAdd(new RotateDown(rotateArm,-255,1.5)) // Don't Hit Wall
 
 
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,1,-1,.4))
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.4,1,-1,.7))
-                        .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,0,0,1))
-                        .stopAndAdd(new RotateUp(rotateArm,260,2.5)) // Grab Third Sample
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,1,-1,.5,.05))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,.5,1,-1,.5,.05))
+                        .stopAndAdd(new ExtendIn(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, -6,-1,1,-1,1))
+                        .stopAndAdd(new RotateUp(rotateArm,160,.065,2.5)) // Grab Third Sample
 
                         .waitSeconds(.01)
-                        .strafeTo(new Vector2d(-44,-51))
-                        .strafeToLinearHeading(new Vector2d(-55,-51), Math.toRadians(90))
-                        .strafeToLinearHeading(new Vector2d(-54.01,-50.01), Math.toRadians(211))
+                        .strafeTo(new Vector2d(-57,-51.01))
+                        .strafeToLinearHeading(new Vector2d(-57.1,-51), Math.toRadians(0))
+                        .strafeToLinearHeading(new Vector2d(-57.01,-51.01), Math.toRadians(121))
 
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,.4))
-                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 19,0.1,-1,1,2)) // Intake
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 18,1,0,0,.5,.05))
+                        .stopAndAdd(new ExtendOut(extendArm1, extendArm2, rotateArm, Wheel1, Wheel2, 19,0.1,-1,1,2,.05)) // Intake
 
 
 
@@ -164,11 +167,13 @@ public class ThreeSampleAuto2 extends LinearOpMode {
         DcMotor rotateArm;
         double Rposition;
         double next;
+        double endpower;
 
-        public RotateUp(DcMotor ar, double rot, double stop) {
+        public RotateUp(DcMotor ar, double rot,double rotp, double stop) {
             this.rotateArm = ar;
             this.Rposition = rot;
             this.next = stop;
+            this.endpower = rotp;
         }
 
         @Override
@@ -191,7 +196,7 @@ public class ThreeSampleAuto2 extends LinearOpMode {
             if (pos < end) {
                 return timer.seconds() < next;
             } else {
-                rotateArm.setPower(Math.abs(.065));
+                rotateArm.setPower(Math.abs(endpower));
                 rotateArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 return false;
             }
@@ -249,8 +254,9 @@ public class ThreeSampleAuto2 extends LinearOpMode {
         double rpower;
         DcMotor rotateArm;
         double next;
+        double endpower;
 
-        public ExtendOut(DcMotor l, DcMotor r, DcMotor ar, CRServo ls, CRServo rs, double ext, double speed, double lp, double rp, double stop) {
+        public ExtendOut(DcMotor l, DcMotor r, DcMotor ar, CRServo ls, CRServo rs, double ext, double speed, double lp, double rp, double stop, double rotp) {
             this.extendArm1 = l;
             this.extendArm2 = r;
             this.Aposition = ext;
@@ -261,6 +267,7 @@ public class ThreeSampleAuto2 extends LinearOpMode {
             this.rpower = rp;
             this.rotateArm = ar;
             this.next = stop;
+            this.endpower = rotp;
         }
 
         @Override
@@ -295,7 +302,7 @@ public class ThreeSampleAuto2 extends LinearOpMode {
             } else {
                 extendArm1.setPower(Math.abs(0));
                 extendArm2.setPower(Math.abs(0));
-                rotateArm.setPower(Math.abs(.05));
+                rotateArm.setPower(Math.abs(endpower));
                 rotateArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 extendArm1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 extendArm2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
