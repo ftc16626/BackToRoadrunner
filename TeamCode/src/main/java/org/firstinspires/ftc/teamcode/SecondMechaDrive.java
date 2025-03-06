@@ -33,7 +33,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /*
@@ -69,10 +69,10 @@ public class SecondMechaDrive extends LinearOpMode {
 
     // Declare OpMode members for each of the 4 motors.
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor LFMotor = null;
-    private DcMotor LBMotor = null;
-    private DcMotor RFMotor = null;
-    private DcMotor RBMotor = null;
+    private DcMotor LFMotor;
+    private DcMotor LBMotor;
+    private DcMotor RFMotor;
+    private DcMotor RBMotor;
     private DcMotor rotateArm = null;
     private DcMotor extendArm2 = null;
     private DcMotor extendArm1 = null;
